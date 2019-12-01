@@ -1,3 +1,5 @@
+package part_01
+
 import java.io.File
 
 fun calculateFuelRequirement(moduleMasses : List<Int>) : Int {
@@ -14,7 +16,7 @@ fun calculateExample() {
 fun main() {
     //calculateExample()
 
-    var inputMasses : List<Int> = File("01/input.txt").readLines().map { it.toInt() }
+    var inputMasses : List<Int> = File("day_01/input.txt").readLines().map { it.toInt() }
     println("Result=${calculateFuelRequirement(inputMasses)}")
 
 }
