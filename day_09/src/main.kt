@@ -208,9 +208,17 @@ fun part01() {
     var program = loadProgram("day_09/input.txt").toMutableList()
     val output = ArrayBlockingQueue<Long>(500)
     Computer(1.toBlockingQueue(1), output).execute(program)
-    //println("[Part 01] Max thruster signal: $signal (for setting=$setting)")
+    println("[Part 01] Output: ${output.take()}")
+}
+
+fun part02() {
+    var program = loadProgram("day_09/input.txt").toMutableList()
+    val output = ArrayBlockingQueue<Long>(500)
+    Computer(2.toBlockingQueue(4), output).execute(program)
+    println("[Part 02] Output: ${output.toList()}")
 }
 fun main() {
-   //tests()
-   part01()
+    //tests()
+    part01()
+    part02()
 }
