@@ -1,39 +1,7 @@
 import java.io.File
-import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
 import kotlin.system.measureTimeMillis
-
-// Not blocking blocking queue...
-// TODO remove this,, use blocking one and let router do this
-class InputQueue: LinkedBlockingQueue<Long>() {
-    private var next: Long? = null
-    private var polled = false
-
-    override fun take(): Long {
-        if (next != null) {
-            val ret = checkNotNull(next)
-            next = null
-            polled = false
-            return ret
-        } else if (super.size >= 2) {
-            val ret = super.take()
-            next = super.take()
-            polled = false
-            return ret
-        }
-        polled = true
-        return -1
-    }
-
-    override fun peek(): Long {
-        return super.peek() ?: -1
-    }
-
-    fun isPolled(): Boolean {
-        return isEmpty() && polled
-    }
-}
 
 fun loadProgram(fileName : String) : List<Long> {
     return File(fileName).readText().trim().split(",").map { it.toLong() }.toList()
